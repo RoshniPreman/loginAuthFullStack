@@ -1,31 +1,46 @@
-<div class="row align-self-center">
-    <form #loginForm="ngForm">
-        <div class="col col-md-4">
-            <!-- Email input -->
-            <div class="mb-4">
-                <label class="form-label" for="username">User name :</label>
-                <input type="username" name="username" class="form-control" [(ngModel)]="userName" required
-                    minlength="5" maxlength="20" />
+<div class="login-container">
+    <div class="row mt-5">
+        <form #loginForm="ngForm">
+            <div class="col col-md-5">
+                <!-- Email input -->
+                <div class="mb-4">
+                    <label class="form-label" for="username">User name <span class="text-danger">*</span> :</label>
+                    <input type="username" name="username" class="form-control" [(ngModel)]="userName" required
+                        minlength="5" maxlength="20" #username="ngModel" />
+                    <div class="is-invalid text-danger"
+                        *ngIf="username.invalid && (username.dirty || username.touched)">
+                        Enter minimum 5 characters
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="col col-md-4">
-            <!-- Password -->
-            <div class="mb-4">
-                <label class="form-label" for="password">Password :</label>
-                <input type="password" name="password" class="form-control" required [(ngModel)]="password"
-                    minlength="10" maxlength="64" />
+            <div class="col col-md-5">
+                <!-- Password -->
+                <div class="mb-4">
+                    <label class="form-label" for="password">Password <span class="text-danger">*</span> :</label>
+                    <input type="password" name="password" class="form-control" required [(ngModel)]="userPassword"
+                        minlength="10" maxlength="64" #password="ngModel" />
+                    <div class="is-invalid text-danger"
+                        *ngIf="password.invalid && (password.dirty || password.touched)">
+                        Enter minimum 10 characters
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
+
+            <div class="col col-md-5">
+                <!-- Password -->
+                <div class="mb-4">
+
+                    <!-- Submit button -->
+                    <button type="button" class="btn btn-primary btn-block" [disabled]="!loginForm.valid"
+                        (click)="loginClick()">Sign
+                        in</button>
+                    <!-- Register buttons -->
+                </div>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+        </form>
+    </div>
 </div>
-
-<!-- Submit button -->
-<button type="button" class="btn btn-primary btn-block mb-4" [disabled]="!loginForm.valid" (click)="loginClick()">Sign
-    in</button>
-
-<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-   {{errorMessage}}
-</div>
-
-<!-- Register buttons -->

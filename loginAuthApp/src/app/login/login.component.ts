@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   constructor(private loginService:LoginService, private route: Router) { }
   
   userName: string = "";
-  password: string = "";
+  userPassword: string = "";
   errorMessage: string = "";
 
   /* Login using username & password using restapi
   */
   loginClick() {
-    let loginRequest: Login = { userName: this.userName, password: this.password };
+    let loginRequest: Login = { userName: this.userName, password: this.userPassword };
     
     this.loginService.authenticate(loginRequest).subscribe({
       next: () => {
