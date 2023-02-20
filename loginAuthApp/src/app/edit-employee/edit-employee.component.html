@@ -1,0 +1,89 @@
+<h1>Edit Employee {{this.selectedEmployee.firstName}}</h1>
+
+<div class="row">
+    <form [formGroup]="employeeForm">
+        <div class="col col-xs-6 col-sm-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-7">
+                    <input title="form-input" type="text" class="form-control" formControlName="firstName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-7">
+                    <input title="form-input" type="text" class="form-control" formControlName="lastName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Email*</label>
+                <div class="col-sm-7">
+                    <input title="form-input" type="text" class="form-control" formControlName="email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Age</label>
+                <div class="col-sm-7">
+                    <input title="form-input" type="text" class="form-control" formControlName="age">
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-xs-6 col-sm-6">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-3 col-form-label">Address</label>
+                <div class="col-sm-7">
+                    <input title="form-input" type="text" class="form-control" formControlName="address">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">State & District</label>
+                <div class="col-sm-4">
+                    <select formControlName="state" class="form-select" (change)="changeState($event)">
+                        <option>Select State</option>
+                        <option *ngFor="let state of stateDistrictList" [value]="state.stateName">{{state.stateName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-select" formControlName="district" (change)="changeDistrict($event)">
+                        <option>Select District</option>
+                        <option *ngFor="let district of districtList" [value]="district.district">
+                            {{district.district}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-9">
+                    <input class="form-check-input" type="radio" value='M' formControlName="gender"
+                        (change)="changeGender($event)">Male
+                    <input class="form-check-input" type="radio" value='F' formControlName="gender">Female
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Employment Type</label>
+                <div class="col-sm-9">
+                    <input class="form-check-input" type="radio" value='Permanent' formControlName="employmentType"
+                        (change)="changeEmploymentType($event)">Permanent
+                    <input class="form-check-input" type="radio" value='Temporary'
+                        formControlName="employmentType">Temporary
+                </div>
+            </div>
+            <!-- <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Skills</label>
+                <div class="col-sm-9">
+                    <span *ngFor="let skill of skillSet">
+                        <input class="form-check-input" type="checkbox" [value]="skill" [checked]="skillSet.includes(employeeForm.skills)" formControlName="skills">
+                        <label class="form-check-label">
+                            {{skill}}
+                        </label>
+                    </span>
+                </div>
+            </div> -->
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block mb-4" [disabled]="!employeeForm.valid"
+            (click)="submitEmployee()">Submit</button>
+    </form>
+</div>

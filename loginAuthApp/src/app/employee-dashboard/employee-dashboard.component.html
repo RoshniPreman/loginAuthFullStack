@@ -1,0 +1,24 @@
+<h1>Employee Dashboard</h1>
+
+<div class="row">
+    <div class="col col-md-4" *ngFor="let employee of employeeList;let i = index;">
+        <div class="employee-card">
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="img-thumbnail" src="../../assets/images/{{employee.imageName}}"
+                        alt="{{employee.imageName}}" />
+                </div>
+                <div class="col-md-6">
+                   <span class="card-text">{{employee.firstName}} {{employee.lastName}}</span>
+                   <span class="card-text">{{employee.age}}</span>
+                   <span class="card-text">{{employee.state}} - {{employee.district}}</span>
+
+                   <div class="row mt-5">
+                        <button type="button" class="btn btn-sm btn-outline-dark btn-width" (click)="editEmployee(employee.id)">Edit</button>
+                        <button class="btn btn-outline-dark btn-width ms-1" (click)="deleteEmployee(i)">Delete</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

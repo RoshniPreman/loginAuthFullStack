@@ -1,0 +1,1 @@
+export const skills: Array<string> = ["Angular", "AngulJs", "Java", "Javascript", "VuewJS", "NVH"]
